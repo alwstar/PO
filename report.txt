@@ -1,0 +1,45 @@
+### Bericht zum Studenteneinschreibungs-Predictor
+
+#### Übersicht
+Diese Analyse wurde durchgeführt, um ein Vorhersagemodell zu entwickeln, das identifiziert, welche Studierenden sich wahrscheinlich einschreiben werden. Mehrere Machine-Learning-Modelle wurden trainiert und evaluiert, um den besten Prädiktor anhand verschiedener Leistungsmetriken zu finden. Ziel ist es, die entscheidenden Faktoren für die Einschreibung zu verstehen und ein zuverlässiges Vorhersage-Tool zu erstellen.
+
+#### Datenanalyse
+Vor dem Aufbau der Modelle wurde eine ausführliche Analyse des Datensatzes durchgeführt. Wichtige Merkmale, die für die Vorhersagemodelle berücksichtigt wurden, umfassen:
+- **Semester**: Das Semester, in dem die Studierenden befragt wurden.
+- **InfoVeranstaltung**: Ob der/die Studierende an einer Informationsveranstaltung teilgenommen hat ("ja" oder "nein").
+- **Note HZB**: Die Durchschnittsnote aus der vorherigen Ausbildung.
+- **Note Bachelor**: Die Durchschnittsnote während des Bachelorstudiums.
+- **ECTS Bachelor**: Die im Bachelorstudium erworbenen ECTS-Punkte.
+- **Entfernung zu 71034**: Die geografische Entfernung zwischen dem Wohnort des/der Studierenden und der Institution.
+
+Ein Korrelationsdiagramm wurde verwendet, um die Beziehungen zwischen diesen Merkmalen zu visualisieren und ihre Bedeutung für das Modell besser zu verstehen.
+
+#### Modellaufbau und Evaluierung
+Die folgenden Modelle wurden erstellt und anhand von Metriken wie Genauigkeit, Präzision, Recall und ROC-AUC bewertet:
+- **Logistische Regression**
+- **Random Forest**
+- **Gradient Boosting**
+- **K-Nearest Neighbors (KNN)**
+- **Support Vector Machine (SVM)**
+- **LightGBM**
+- **Voting Classifier**: Ein Ensemble der besten Modelle.
+
+Die Auswertung ergab, dass der **Voting Classifier** das effektivste Modell ist, mit folgenden Leistungswerten:
+- **Genauigkeit**: 92%
+- **Präzision**: 89%
+- **Recall**: 87%
+- **ROC-AUC**: 97%
+
+Der Voting Classifier kombiniert die Vorhersagen mehrerer Modelle (Logistische Regression, Random Forest, Gradient Boosting, SVM und LightGBM), was zu seiner überlegenen Leistung beiträgt. Der hohe ROC-AUC-Wert zeigt, dass dieses Modell sehr gut zwischen Studierenden, die sich einschreiben werden, und denen, die es nicht tun, unterscheiden kann.
+
+#### Wichtige Merkmale
+Die Analyse der Feature-Importance des Random-Forest-Modells zeigte, welche Faktoren die größte Bedeutung für die Vorhersage der Einschreibung haben:
+1. **Note Bachelor**: Die Durchschnittsnote im Bachelorstudium war der wichtigste Prädiktor für die Einschreibung. Studierende mit besseren Noten hatten eine höhere Einschreibungswahrscheinlichkeit.
+2. **Entfernung zu 71034**: Die geografische Nähe zur Institution spielte eine wichtige Rolle, wobei Studierende, die näher wohnten, eher zur Einschreibung neigten.
+3. **ECTS Bachelor**: Die Anzahl der ECTS-Punkte im Bachelorstudium war ein weiterer bedeutender Faktor und deutet darauf hin, dass Studierende mit mehr Punkten stärker an einer weiteren Ausbildung interessiert sind.
+4. **InfoVeranstaltung**: Die Teilnahme an einer Informationsveranstaltung ("ja" oder "nein") hatte ebenfalls einen Einfluss auf die Einschreibung, was auf die Bedeutung von Engagement-Aktivitäten hindeutet.
+5. **Semester**: Obwohl weniger bedeutend, hatte das Semester ebenfalls einen gewissen Einfluss auf den Entscheidungsprozess.
+6. **Note HZB**: Die Durchschnittsnote aus der vorherigen Ausbildung zeigte eine geringere Bedeutung im Vergleich zu den anderen Merkmalen.
+
+#### Fazit
+Die Analyse identifizierte den **Voting Classifier** als das robusteste Vorhersagemodell für die Einschreibung, da es hohe Werte über mehrere Evaluationsmetriken hinweg erreichte. Dieses Modell kann die Institution effektiv dabei unterstützen, Studierende zu identifizieren, die sich wahrscheinlich einschreiben werden, basierend auf wichtigen Merkmalen wie der Durchschnittsnote im Bachelorstudium, geografischer Nähe und vorherigem Engagement. Die gewonnenen Erkenntnisse zur Feature-Importance können zudem Strategien zur Verbesserung des Engagements und zur Beeinflussung der Einschreibungsentscheidungen leiten.
