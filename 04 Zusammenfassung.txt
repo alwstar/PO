@@ -1,0 +1,32 @@
+00 Das Skript berechnet die Entfernung von einer festen Ziel-PLZ (71034) zu anderen PLZs im Datensatz mithilfe der Haversine-Formel und speichert die Ergebnisse in einer neuen Excel-Datei.
+01 ### Erläuterung der Modelle und Features:
+
+1. **Verwendete Features:**
+   - **InfoVeranstaltung**: Teilnahme an einer Informationsveranstaltung (kategorisch).
+   - **Distance_to_71034**: Entfernung zu einem festen Ort (numerisch).
+   - **Note Bachelor**: Abschlussnote des Bachelorstudiums (numerisch).
+   - **Zweitbewerbung**: Ob es sich um eine Zweitbewerbung handelt (kategorisch).
+   - **Fachrichtung Bachelor**: Studienrichtung des Bachelorstudiums (kategorisch).
+   - **Note HZB**: Note der Hochschulzugangsberechtigung (numerisch).
+
+   Diese Features wurden entsprechend ihrer Art vorverarbeitet: numerische Features wurden skaliert und fehlende Werte durch den Mittelwert ersetzt, während kategorische Features durch One-Hot-Encoding in numerische Form umgewandelt wurden.
+
+2. **Verglichene Modelle:**
+   - **Random Forest**: Ein Ensemble-Modell, das mit mehreren Entscheidungsbäumen arbeitet.
+   - **LightGBM**: Ein Gradient-Boosting-Modell, das für Effizienz und Genauigkeit optimiert ist.
+   - **Logistische Regression**: Ein einfaches lineares Modell für binäre Klassifikationsprobleme.
+
+### Zusammenfassung der Ergebnisse:
+
+1. **Konfusionsmatrizen**:
+   - **Random Forest**: Klassifiziert alle positiven Fälle („Ja“) korrekt und hat eine gute Leistung bei negativen Fällen („Nein“) mit 6 korrekten und 3 fehlerhaften Vorhersagen.
+   - **LightGBM** und **Logistische Regression**: Ähnliche Ergebnisse wie Random Forest, jedoch mit einer geringfügig höheren Anzahl falscher Vorhersagen bei den negativen Fällen („Nein“).
+
+2. **Modellvergleich (Kreuzvalidierung)**:
+   - Alle drei Modelle zeigen eine vergleichbare mittlere Genauigkeit, wobei der Random Forest leicht besser abschneidet, gefolgt von LightGBM und der Logistischen Regression. Die Balkendiagramme zeigen, dass die Modelle in Bezug auf Genauigkeit sehr nah beieinander liegen, jedoch kleine Unterschiede aufweisen.
+
+Insgesamt zeigt der Random Forest in diesem Fall eine leicht bessere Leistung. Alle Modelle liefern jedoch eine solide Performance bei der Vorhersage der Zielvariable.
+
+02 Das Skript trainiert ein Random-Forest-Modell, um die Immatrikulation vorherzusagen. Es verarbeitet die Daten (Skalierung numerischer und Kodierung kategorischer Features), trainiert das Modell, evaluiert die Vorhersagen auf Testdaten und speichert das Modell.
+
+03 Das Skript lädt ein gespeichertes Random-Forest-Modell und einen neuen Datensatz aus einer Excel-Datei. Es trifft Vorhersagen für die Immatrikulation basierend auf ausgewählten Merkmalen, fügt diese Vorhersagen dem Datensatz hinzu und speichert die Ergebnisse in einer neuen Excel-Datei. Es enthält Logging, um den Prozess und mögliche Fehler zu überwachen.
